@@ -173,7 +173,13 @@ string getfilenameFromPath(const char* filepath)
     int ret = str.find_last_of('/');
     return str.substr(ret+1);
 }
-
+struct nullstream : public std::ostream 
+{
+    //nullstream() : std::ios(0), std::ostream(0) {}
+    nullstream() : std::ostream(0) {}
+};
+static nullstream null_log;
+null_log<<"changxin"<<endl;  //will not print to screen
 int main()
 {
     const char *str="192.168.0.110";
