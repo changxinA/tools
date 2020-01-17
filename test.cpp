@@ -95,46 +95,6 @@ Author: cx
 
 Date:2019-12-22
 
-Description:string to int vector<int>
-
-Need include file:
-#include <string>
-#include <vector>
-#include <iostream>
-
-NOTE:The parameter is string
-**************************************************************************/
-bool splitStringToInt(string &strsrc,string &strSplit,vector<int>& vecresult)
-{
-        string sstr = strsrc;
-        if (strsrc.empty())
-        {
-                return false;
-        }
-        string::size_type iStarpos = 0;
-        string::size_type isplitpos = 0;
-        string str;
-        isplitpos = strsrc.find(strSplit,iStarpos);
-        while(string::npos != isplitpos)
-        {
-                str = sstr.substr(iStarpos,isplitpos - iStarpos);
-                vecresult.push_back(stringToInt(str));
-                iStarpos = isplitpos + strSplit.size();
-                isplitpos = strsrc.find(strSplit,iStarpos);
-        }
-        str = strsrc.substr(iStarpos);
-        vecresult.push_back(stringToInt(str));
-        return true;
-}
-
-/**************************************************************************
-
-Copyright:MySelf
-
-Author: cx
-
-Date:2019-12-22
-
 Description:string to int
 
 Need include file:
@@ -150,6 +110,68 @@ int stringToInt(string str)
     ss<<str;
     ss>>res;
     return res;
+}
+
+/**************************************************************************
+
+Copyright:MySelf
+
+Author: cx
+
+Date:2019-12-22
+
+Description:string to int vector<int>
+
+Need include file:
+#include <string>
+#include <vector>
+#include <iostream>
+
+NOTE:The parameter is string
+**************************************************************************/
+bool splitStringToInt(string &strsrc,string &strSplit,vector<int>& vecresult)
+{
+	string sstr = strsrc;
+	if (strsrc.empty())
+	{
+		return false;
+	}
+	string::size_type iStarpos = 0;
+	string::size_type isplitpos = 0;
+	string str;
+	isplitpos = strsrc.find(strSplit,iStarpos);
+	while(string::npos != isplitpos)
+	{
+		str = sstr.substr(iStarpos,isplitpos - iStarpos);
+		vecresult.push_back(stringToInt(str));
+		iStarpos = isplitpos + strSplit.size();
+		isplitpos = strsrc.find(strSplit,iStarpos);
+	}
+	str = strsrc.substr(iStarpos);
+	vecresult.push_back(stringToInt(str));
+	return true;
+}
+/**************************************************************************
+
+Copyright:MySelf
+
+Author: cx
+
+Date:2019-12-22
+
+Description:/home/root/cpp/src/libattr.cpp  -> libattr.cpp
+
+Need include file:
+#include <string>
+#include <iostream>
+
+NOTE:
+**************************************************************************/
+string getfilenameFromPath(const char* filepath)
+{  
+	string str=filepath;
+    int ret = str.find_last_of('/');
+    return str.substr(ret+1);
 }
 
 int main()
